@@ -46,6 +46,12 @@ public class ItemHistory extends HttpServlet {
 	    JSONArray array = new JSONArray();
 	    for (Item item : items) {
 	      JSONObject obj = item.toJSONObject();
+	      try {
+			obj.put("favorite", true);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	      array.put(obj);
 	    }
 	    RpcHelper.writeJsonArray(response, array);
